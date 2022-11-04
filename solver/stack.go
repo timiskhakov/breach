@@ -31,13 +31,6 @@ func (s *stack) Exists(p point) bool {
 	return false
 }
 
-func (s *stack) Iter() chan point {
-	c := make(chan point)
-	go func() {
-		for i := 0; i < len(s.storage); i++ {
-			c <- s.storage[i]
-		}
-		close(c)
-	}()
-	return c
+func (s *stack) Slice() []point {
+	return s.storage
 }

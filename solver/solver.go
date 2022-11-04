@@ -4,39 +4,29 @@ type point struct {
 	x, y int
 }
 
-type Solver struct {
-}
-
-func (s *Solver) Solve(matrix [][]byte, sequence []byte) {
-	count := 0
+func Solve(matrix [][]byte, sequence []byte) []point {
 	for i := 0; i < len(matrix); i++ {
 		for j := 0; j < len(matrix[0]); j++ {
 			if matrix[i][j] == sequence[0] {
-				isHor := true
-				if i == 0 {
-					isHor = false
-				}
-
 				s := stack{}
-				dfs(matrix, sequence, &s, point{i, j}, isHor)
-
+				dfs(matrix, sequence, &s, point{i, j}, i != 0)
 				if s.Len() == len(sequence) {
-					return
+					return s.Slice()
 				}
-
-				count++
 			}
 		}
 	}
+
+	return []point{}
 }
 
-func dfs(matrix [][]byte, sequence []byte, s *stack, p point, isHor bool) {
+func dfs(matrix [][]byte, sequence []byte, s *stack, p point, hrz bool) {
 	s.Push(p)
 	if s.Len() == len(sequence) {
 		return
 	}
 
-	if isHor {
+	if hrz {
 		for i := 0; i < len(matrix[0]); i++ {
 			if s.Len() < len(sequence) && matrix[p.x][i] == sequence[s.Len()] && !s.Exists(point{p.x, i}) {
 				dfs(matrix, sequence, s, point{p.x, i}, false)
