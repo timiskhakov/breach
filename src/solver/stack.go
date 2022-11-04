@@ -3,10 +3,10 @@ package solver
 import "errors"
 
 type stack struct {
-	storage []point
+	storage []Point
 }
 
-func (s *stack) Push(p point) {
+func (s *stack) Push(p Point) {
 	s.storage = append(s.storage, p)
 }
 
@@ -22,7 +22,7 @@ func (s *stack) Len() int {
 	return len(s.storage)
 }
 
-func (s *stack) Exists(p point) bool {
+func (s *stack) Exists(p Point) bool {
 	for _, v := range s.storage {
 		if v == p {
 			return true
@@ -31,6 +31,6 @@ func (s *stack) Exists(p point) bool {
 	return false
 }
 
-func (s *stack) Slice() []point {
+func (s *stack) Slice() []Point {
 	return s.storage
 }
