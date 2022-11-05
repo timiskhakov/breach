@@ -1,7 +1,7 @@
 package breach
 
 func Solve(matrix [][]byte, seq []byte) []Point {
-	for i := 0; i < len(matrix[0]); i++ {
+	for i := 0; i < len(matrix); i++ {
 		for j := 0; j < len(matrix[0]); j++ {
 			if matrix[i][j] == seq[0] {
 				s := stack{}
