@@ -1,15 +1,24 @@
 package breach
 
-//func Optimize(seqs [][]byte, size int) [][]byte {
-//	result := make([][]byte, 0)
-//	longestSeqs := findLongestSeqs(seqs, size)
-//	for _, longestSeq := range longestSeqs {
-//
-//	}
-//
-//	return result
-//}
-//
+func Optimize(seqs [][]byte, size int) []byte {
+	longestSeqs := findLongestSeqs(seqs, size)
+	result := longestSeqs[0]
+	for _, longestSeq := range longestSeqs {
+		for _, seq := range seqs {
+			left := merge(longestSeq, seq)
+			if len(left) > len(result) && len(left) <= size {
+				result = left
+			}
+			right := merge(seq, longestSeq)
+			if len(right) > len(result) && len(right) <= size {
+				result = right
+			}
+		}
+	}
+
+	return result
+}
+
 func findLongestSeqs(seqs [][]byte, size int) [][]byte {
 	result := make([][]byte, 0)
 	longest := 0
