@@ -1,7 +1,7 @@
 package breach
 
-func Optimize(seqs [][]byte, size int) []byte {
-	longestSeqs := findLongestSeqs(seqs, size)
+func Optimize(firstRow []byte, seqs [][]byte, size int) []byte {
+	longestSeqs := findLongestSeqs(firstRow, seqs, size)
 	result := longestSeqs[0]
 	for _, longestSeq := range longestSeqs {
 		for _, seq := range seqs {
@@ -19,17 +19,31 @@ func Optimize(seqs [][]byte, size int) []byte {
 	return result
 }
 
-func findLongestSeqs(seqs [][]byte, size int) [][]byte {
+func findLongestSeqs(firstRow []byte, seqs [][]byte, size int) [][]byte {
 	result := make([][]byte, 0)
 	longest := 0
 	for _, seq := range seqs {
-		if len(seq) >= longest && len(seq) <= size {
+		seqSize := size
+		if !contains(firstRow, seq[0]) {
+			seqSize--
+		}
+
+		if len(seq) >= longest && len(seq) <= seqSize {
 			result = append(result, seq)
 			longest = len(seq)
 		}
 	}
 
 	return result
+}
+
+func contains(arr []byte, elem byte) bool {
+	for i := 0; i < len(arr); i++ {
+		if arr[i] == elem {
+			return true
+		}
+	}
+	return false
 }
 
 func merge(seq1, seq2 []byte) []byte {
