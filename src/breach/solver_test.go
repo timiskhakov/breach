@@ -1,4 +1,4 @@
-package solver
+package breach
 
 import (
 	"github.com/stretchr/testify/assert"
