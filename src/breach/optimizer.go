@@ -10,18 +10,18 @@ package breach
 //	return result
 //}
 //
-//func findLongestSeqs(seqs [][]byte, size int) [][]byte {
-//	result := make([][]byte, 0)
-//	longest := 0
-//	for _, seq := range seqs {
-//		if len(seq) >= longest && len(seq) <= size {
-//			result = append(result, seq)
-//			longest = len(seq)
-//		}
-//	}
-//
-//	return result
-//}
+func findLongestSeqs(seqs [][]byte, size int) [][]byte {
+	result := make([][]byte, 0)
+	longest := 0
+	for _, seq := range seqs {
+		if len(seq) >= longest && len(seq) <= size {
+			result = append(result, seq)
+			longest = len(seq)
+		}
+	}
+
+	return result
+}
 
 func merge(seq1, seq2 []byte) []byte {
 	index := 0
