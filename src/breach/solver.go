@@ -2,11 +2,16 @@ package breach
 
 func Solve(matrix [][]byte, seq []byte) []Point {
 	for i := 0; i < len(matrix[0]); i++ {
-		if matrix[0][i] == seq[0] {
-			s := stack{}
-			dfs(matrix, seq, &s, Point{0, i}, false)
-			if s.Len() == len(seq) {
-				return s.Slice()
+		for j := 0; j < len(matrix[0]); j++ {
+			if matrix[i][j] == seq[0] {
+				s := stack{}
+				dfs(matrix, seq, &s, Point{i, j}, i != 0)
+				if s.Len() == len(seq) {
+					if i != 0 {
+						return append([]Point{{0, j}}, s.Slice()...)
+					}
+					return s.Slice()
+				}
 			}
 		}
 	}

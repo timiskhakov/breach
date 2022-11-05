@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestSolve_Case1(t *testing.T) {
+func TestSolve_Case1_FirstRowMatch(t *testing.T) {
 	matrix := [][]byte{
 		{0xE9, 0xE9, 0x7A, 0xBD, 0x55, 0x55},
 		{0x1C, 0x1C, 0x1C, 0x7A, 0x55, 0xE9},
@@ -31,7 +31,7 @@ func TestSolve_Case2_NoFirstRowMatch(t *testing.T) {
 
 	actual := Solve(matrix, []byte{0x55, 0x1C})
 
-	assert.Equal(t, []Point{}, actual)
+	assert.Equal(t, []Point{{0, 4}, {1, 4}, {1, 0}}, actual)
 }
 
 func TestSolve_Case3_MilitechShard(t *testing.T) {
