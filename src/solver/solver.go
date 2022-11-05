@@ -1,14 +1,12 @@
 package solver
 
 func Solve(matrix [][]byte, sequence []byte) []Point {
-	for i := 0; i < len(matrix); i++ {
-		for j := 0; j < len(matrix[0]); j++ {
-			if matrix[i][j] == sequence[0] {
-				s := stack{}
-				dfs(matrix, sequence, &s, Point{i, j}, i != 0)
-				if s.Len() == len(sequence) {
-					return s.Slice()
-				}
+	for i := 0; i < len(matrix[0]); i++ {
+		if matrix[0][i] == sequence[0] {
+			s := stack{}
+			dfs(matrix, sequence, &s, Point{0, i}, false)
+			if s.Len() == len(sequence) {
+				return s.Slice()
 			}
 		}
 	}
