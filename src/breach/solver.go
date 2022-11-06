@@ -10,6 +10,7 @@ func Solve(matrix [][]byte, seq []byte) []Point {
 					if i != 0 {
 						return append([]Point{{0, j}}, s.Slice()...)
 					}
+
 					return s.Slice()
 				}
 			}
@@ -42,6 +43,6 @@ func dfs(matrix [][]byte, seq []byte, s *stack, p Point, hrz bool) {
 	}
 
 	if s.Len() < len(seq) {
-		_ = s.Pop()
+		s.Pop()
 	}
 }

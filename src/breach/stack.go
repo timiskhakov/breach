@@ -1,7 +1,5 @@
 package breach
 
-import "errors"
-
 type stack struct {
 	storage []Point
 }
@@ -10,12 +8,12 @@ func (s *stack) Push(p Point) {
 	s.storage = append(s.storage, p)
 }
 
-func (s *stack) Pop() error {
+func (s *stack) Pop() {
 	if len(s.storage) == 0 {
-		return errors.New("stack is empty")
+		return
 	}
+
 	s.storage = s.storage[:len(s.storage)-1]
-	return nil
 }
 
 func (s *stack) Len() int {
@@ -28,6 +26,7 @@ func (s *stack) Exists(p Point) bool {
 			return true
 		}
 	}
+	
 	return false
 }
 
