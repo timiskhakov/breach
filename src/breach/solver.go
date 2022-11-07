@@ -31,15 +31,15 @@ func (s *Solver) dfs(matrix [][]byte, seq []byte, node Point, hrz bool) {
 
 	if hrz {
 		for i := 0; i < len(matrix[0]); i++ {
-			candidate := Point{node.x, i}
-			if s.stack.len() < len(seq) && matrix[node.x][i] == seq[s.stack.len()] && !s.stack.exists(candidate) {
+			candidate := Point{node.X, i}
+			if s.stack.len() < len(seq) && matrix[node.X][i] == seq[s.stack.len()] && !s.stack.exists(candidate) {
 				s.dfs(matrix, seq, candidate, false)
 			}
 		}
 	} else {
 		for i := 0; i < len(matrix); i++ {
-			candidate := Point{i, node.y}
-			if s.stack.len() < len(seq) && matrix[i][node.y] == seq[s.stack.len()] && !s.stack.exists(candidate) {
+			candidate := Point{i, node.Y}
+			if s.stack.len() < len(seq) && matrix[i][node.Y] == seq[s.stack.len()] && !s.stack.exists(candidate) {
 				s.dfs(matrix, seq, candidate, true)
 			}
 		}
