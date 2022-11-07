@@ -23,23 +23,23 @@ func (s *Solver) Solve(matrix [][]byte, seq []byte) []Point {
 	return s.stack.slice()
 }
 
-func (s *Solver) dfs(matrix [][]byte, seq []byte, node Point, hrz bool) {
-	s.stack.push(node)
+func (s *Solver) dfs(matrix [][]byte, seq []byte, p Point, dir bool) {
+	s.stack.push(p)
 	if s.stack.len() == len(seq) {
 		return
 	}
 
-	if hrz {
+	if dir {
 		for i := 0; i < len(matrix[0]); i++ {
-			candidate := Point{node.X, i}
-			if s.stack.len() < len(seq) && matrix[node.X][i] == seq[s.stack.len()] && !s.stack.exists(candidate) {
+			candidate := Point{p.X, i}
+			if s.stack.len() < len(seq) && matrix[p.X][i] == seq[s.stack.len()] && !s.stack.exists(candidate) {
 				s.dfs(matrix, seq, candidate, false)
 			}
 		}
 	} else {
 		for i := 0; i < len(matrix); i++ {
-			candidate := Point{i, node.Y}
-			if s.stack.len() < len(seq) && matrix[i][node.Y] == seq[s.stack.len()] && !s.stack.exists(candidate) {
+			candidate := Point{i, p.Y}
+			if s.stack.len() < len(seq) && matrix[i][p.Y] == seq[s.stack.len()] && !s.stack.exists(candidate) {
 				s.dfs(matrix, seq, candidate, true)
 			}
 		}
