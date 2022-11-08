@@ -15,7 +15,7 @@ func TestSolve_Case1_NoSequenceFound(t *testing.T) {
 		{0xBD, 0xBD, 0xE9, 0x1C, 0x55, 0xE9},
 	}
 
-	actual := (&Solver{}).Solve(matrix, []byte{0x7A, 0xE9, 0xFF})
+	actual := Solve(matrix, []byte{0x7A, 0xE9, 0xFF})
 
 	assert.Equal(t, []Point{}, actual)
 }
@@ -30,7 +30,7 @@ func TestSolve_Case1_FirstRowMatch(t *testing.T) {
 		{0xBD, 0xBD, 0xE9, 0x1C, 0x55, 0xE9},
 	}
 
-	actual := (&Solver{}).Solve(matrix, []byte{0x55, 0x55, 0x7A})
+	actual := Solve(matrix, []byte{0x55, 0x55, 0x7A})
 
 	assert.Equal(t, []Point{{0, 4}, {1, 4}, {1, 3}}, actual)
 }
@@ -44,7 +44,7 @@ func TestSolve_Case2_NoFirstRowMatch(t *testing.T) {
 		{0x55, 0x1C, 0xBD, 0x55, 0x55},
 	}
 
-	actual := (&Solver{}).Solve(matrix, []byte{0x55, 0x1C})
+	actual := Solve(matrix, []byte{0x55, 0x1C})
 
 	assert.Equal(t, []Point{{0, 4}, {1, 4}, {1, 0}}, actual)
 }
@@ -59,7 +59,7 @@ func TestSolve_Case3_MilitechShard(t *testing.T) {
 		{0xE9, 0xE9, 0x1C, 0xFF, 0xBD, 0xBD},
 	}
 
-	actual := (&Solver{}).Solve(matrix, []byte{0xBD, 0xBD, 0xFF, 0x55, 0x1C, 0xE9})
+	actual := Solve(matrix, []byte{0xBD, 0xBD, 0xFF, 0x55, 0x1C, 0xE9})
 
 	assert.Equal(t, []Point{{0, 4}, {5, 4}, {5, 3}, {0, 3}, {0, 1}, {5, 1}}, actual)
 }
