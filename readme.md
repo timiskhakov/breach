@@ -1,5 +1,3 @@
-https://github.com/govizlora/optical-breacher/blob/main/src/solver.ts
+# breach
 
-https://github.com/cxcorp/cyberpunk2077-hacking-solver/blob/main/lib/bruter.ts
-
-https://en.wikipedia.org/wiki/Depth-first_search
+This repo is a part of this blog post: https://timiskhakov.github.io/posts/breaching-breach-protocol.
